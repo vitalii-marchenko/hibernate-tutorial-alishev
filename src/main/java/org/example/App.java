@@ -23,9 +23,18 @@ public class App {
             Person person2 = new Person("Test2", 40);
             Person person3 = new Person("Test3", 50);
 
+            // Save entities
             session.persist(person1);
             session.persist(person2);
             session.persist(person3);
+
+            // Update Entity
+            Person personToUpdate = session.get(Person.class, 2);
+            personToUpdate.setName("New Name");
+
+            // Delete Entity
+            Person personToDelete = session.get(Person.class, 3);
+            session.remove(personToDelete);
 
             session.getTransaction().commit();
         } finally {
